@@ -2,10 +2,9 @@ class UsersController < ApplicationController
 
   def create
 	    user = User.new(user_params)
-	    conversation = Conversation.find(1)
 	  if user.save
 	      token = encode_token(user.id)
-	      user.conversations << conversation
+	      byebug
 	      render json: {user: UserSerializer.new(user), token: token}
 	  else
 	      render json: {errors: user.errors.full_messages}
